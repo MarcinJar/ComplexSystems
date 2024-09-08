@@ -1,7 +1,7 @@
-from symulation import Simulation
+from one_var_simulation import OneVarSimulation
 
 a = 1.15
 
-simulation = Simulation(a)
+simulation = OneVarSimulation(a)
 simulation.run()
 simulation.display()

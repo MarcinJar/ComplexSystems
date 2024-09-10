@@ -1,3 +1,4 @@
+import matplotlib.pyplot as plt
 
 class MultiVarSimulation:
     def __init__(self, a: float, b: float = 0, end_time: float = 3.0, t_interval: float = 0.1) -> None:
@@ -15,9 +16,12 @@ class MultiVarSimulation:
             self.update()
             
     def display(self) -> None:
-        import matplotlib.pyplot as plt
         plt.plot(self.x_result, 'b-')
         plt.plot(self.y_result, 'g--')
+        plt.show()
+        
+    def display_phase_space(self) -> None:
+        plt.plot(self.x_result, self.y_result)
         plt.show()
 
     def initialize(self, start_x: float = 1.0, start_y: float = 1.0, start_t: float = 0.0) -> None:

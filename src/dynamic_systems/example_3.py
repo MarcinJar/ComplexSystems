@@ -8,3 +8,4 @@ start_y = 1.0
 simulation = MultiVarSimulation(a, b, 3, 0.1)
 simulation.run(start_x, start_y)
 simulation.display()
+simulation.display_phase_space()

@@ -20,3 +20,6 @@ print('Sum', nums, 'is', sum(nums))
 
 nums = [1, 10, 100, 1000]
 print('Sum', nums, 'is', sum(nums))
+
+nums = []
+print('Sum', nums, 'is', sum(nums))

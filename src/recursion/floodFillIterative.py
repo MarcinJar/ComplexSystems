@@ -18,31 +18,31 @@ im = [
 HEIGHT = len(im)
 WIDTH = len(im[0])
 
-def floodFill(image: list[list[str]], x: int, y: int, newChar: str, oldChar: str = None) -> None:
-    if oldChar == None:
-        oldChar = image[y][x]
-        
-    if oldChar == newChar or image[y][x] != oldChar:
+def floodFillIterative(image: list[list[str]], x: int, y: int, newChar: str, oldChar: str = None) -> None:
+    stack: list[(int, int)] = []   
+    oldChar = image[y][x]
+    
+    if oldChar == newChar:
         return
     
-    image[y][x] = newChar
-    
-    # printImage(image)
-    
-    if y + 1 < HEIGHT and image[y + 1][x] == oldChar:
-        floodFill(image, x, y + 1, newChar, oldChar)
-        
-    if y - 1 >= 0 and image[y - 1][x] == oldChar:
-        floodFill(image, x, y - 1, newChar, oldChar)
-        
-    if x + 1 < WIDTH and image[y][x + 1] == oldChar:
-        floodFill(image, x + 1, y, newChar, oldChar)
-    
-    if x - 1 >= 0 and image[y][x - 1] == oldChar:
-        floodFill(image, x - 1, y, newChar, oldChar)
-        
-    return
+    stack.append((y, x))
 
+    while stack:
+        y, x = stack.pop()
+        image[y][x] = newChar
+        
+        if y + 1 < HEIGHT and image[y + 1][x] == oldChar:
+            stack.append((y + 1, x))
+            
+        if y - 1 >= 0 and image[y - 1][x] == oldChar:
+            stack.append((y - 1, x))
+            
+        if x + 1 < WIDTH and image[y][x + 1] == oldChar:
+            stack.append((y, x + 1))
+        
+        if x - 1 >= 0 and image[y][x - 1] == oldChar:
+            stack.append((y, x - 1))
+        
 def printImage(image: list[list[str]]) -> None:
     for y in range(HEIGHT):
         for x in range(WIDTH):
@@ -52,8 +52,8 @@ def printImage(image: list[list[str]]) -> None:
     
 printImage(im)
 
-floodFill(im, 3, 3, '|')
+floodFillIterative(im, 3, 3, '|')
 printImage(im)
 
-floodFill(im, 7, 7, 'x')
+floodFillIterative(im, 7, 7, 'x')
 printImage(im)
